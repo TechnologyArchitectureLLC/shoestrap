@@ -5515,3 +5515,7 @@ body.admin-bar .subnav-fixed {
   border-bottom-right-radius: 4px;
   background: #ffffff;
 }
+#page-nav{
+  float: none;
+  clear: both;
+}
