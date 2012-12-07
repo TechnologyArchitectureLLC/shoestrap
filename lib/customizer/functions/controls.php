@@ -24,27 +24,17 @@ function shoestrap_register_controls( $wp_customize ){
   // Remove the default "background" control
   $wp_customize->remove_control( 'background_color' );
   
-  // Determine if the user is using the advanced builder or not
-  $advanced_builder = get_option('shoestrap_advanced_compiler');
-  // Turn off the advanced builder on multisite
-  if ( is_multisite() && !is_super_admin() ) {
-    $advanced_builder == '';
-  }
-  
   /*
    * Color Controls
    */
   $color_controls   = array();
   
-  // Display the following controls only when user is NOT using the advanced controls
-  if ( $advanced_builder != 1 ) {
-    // Navbar background color
-    $color_controls[] = array( 'setting' => 'shoestrap_navbar_color',           'label' => 'Navbar Color',                    'section' => 'shoestrap_primary_navbar',  'priority' => 4 );
-    // Links Color
-    $color_controls[] = array( 'setting' => 'shoestrap_link_color',             'label' => 'Links Color',                     'section' => 'colors',            'priority' => 2 );
-    // Buttons Color
-    $color_controls[] = array( 'setting' => 'shoestrap_buttons_color',          'label' => 'Buttons Color',                   'section' => 'colors',            'priority' => 3 );
-  }
+  // Navbar background color
+  $color_controls[] = array( 'setting' => 'shoestrap_navbar_color',           'label' => 'Navbar Color',                    'section' => 'shoestrap_primary_navbar',  'priority' => 4 );
+  // Links Color
+  $color_controls[] = array( 'setting' => 'shoestrap_link_color',             'label' => 'Links Color',                     'section' => 'colors',            'priority' => 2 );
+  // Buttons Color
+  $color_controls[] = array( 'setting' => 'shoestrap_buttons_color',          'label' => 'Buttons Color',                   'section' => 'colors',            'priority' => 3 );
   // Navbar text color
   $color_controls[] = array( 'setting' => 'shoestrap_navbar_textcolor',       'label' => 'Navbar Text Color',               'section' => 'colors',            'priority' => 40 );
   // Background Color
@@ -97,16 +87,6 @@ function shoestrap_register_controls( $wp_customize ){
   $checkbox_controls[] = array( 'setting' => 'shoestrap_extra_branding',      'label' => 'Display Extra Header',                  'section' => 'shoestrap_header',      'priority' => 1 );
   // Display Social Links on the Header
   $checkbox_controls[] = array( 'setting' => 'shoestrap_header_social',       'label' => 'Display Social Links',                  'section' => 'shoestrap_header',      'priority' => 5 );
-  // Share Buttons on posts/pages/custom post types: Facebook
-  $checkbox_controls[] = array( 'setting' => 'shoestrap_facebook_on_posts',   'label' => 'Share Buttons on Posts: Facebook',      'section' => 'shoestrap_social',      'priority' => 5 );
-  // Share Buttons on posts/pages/custom post types: Twitter
-  $checkbox_controls[] = array( 'setting' => 'shoestrap_twitter_on_posts',    'label' => 'Share Buttons on Posts: Twitter',       'section' => 'shoestrap_social',      'priority' => 6 );
-  // Share Buttons on posts/pages/custom post types: Google+
-  $checkbox_controls[] = array( 'setting' => 'shoestrap_gplus_on_posts',      'label' => 'Share Buttons on Posts: Google Plus',   'section' => 'shoestrap_social',      'priority' => 7 );
-  // Share Buttons on posts/pages/custom post types: LinkedIn
-  $checkbox_controls[] = array( 'setting' => 'shoestrap_linkedin_on_posts',   'label' => 'Share Buttons on Posts: Linkedin',      'section' => 'shoestrap_social',      'priority' => 8 );
-  // Share Buttons on posts/pages/custom post types: Pinterest
-  $checkbox_controls[] = array( 'setting' => 'shoestrap_pinterest_on_posts',  'label' => 'Share Buttons on Posts: Pinterest',     'section' => 'shoestrap_social',      'priority' => 9 );
   
   // Flat buttons on/off
   $checkbox_controls[] = array( 'setting' => 'shoestrap_flat_buttons',        'label' => 'Flat Buttons (no gradients)',           'section' => 'shoestrap_advanced',       'priority' => 9 );
@@ -133,8 +113,6 @@ function shoestrap_register_controls( $wp_customize ){
   $select_controls[] = array( 'setting' => 'shoestrap_webfonts_assign',         'label' => 'Apply Webfont to:',               'section' => 'shoestrap_typography',  'priority' => 4, 'choises' => array( 'sitename' => __( 'Site Name', 'shoestrap' ), 'headers' => __( 'Headers', 'shoestrap' ), 'all' => __( 'Everywhere', 'shoestrap' ) ) );
   // Visibility of the hero region (frontpage only or site-wide)
   $select_controls[] = array( 'setting' => 'shoestrap_hero_visibility',         'label' => 'Hero Region Visibility',          'section' => 'shoestrap_hero',        'priority' => 9, 'choises' => array( 'front' => __( 'Frontpage', 'shoestrap' ), 'site' => __( 'Site-Wide', 'shoestrap' ) ) );
-  // Socation of share element on single posts/pages/custom-post-types
-  $select_controls[] = array( 'setting' => 'shoestrap_single_social_position',  'label' => 'Location of social shares',       'section' => 'shoestrap_social',      'priority' => 10,'choises' => array( 'top' => __( 'Top', 'shoestrap' ), 'bottom' => __( 'Bottom', 'shoestrap' ), 'both' => __( 'Both', 'shoestrap' ), 'none' => __( 'None', 'shoestrap' ) ) );
   
   // Text Controls
   $text_controls = array();
@@ -156,8 +134,6 @@ function shoestrap_register_controls( $wp_customize ){
   $text_controls[]  = array( 'setting' => 'shoestrap_google_plus_link', 	'label' => 'Google+ Profile Link',        'section' => 'shoestrap_social',      'priority' => 3 );
   // Pinterest Link
   $text_controls[]  = array( 'setting' => 'shoestrap_pinterest_link',   	'label' => 'Pinterest Profile Link',      'section' => 'shoestrap_social',      'priority' => 4 );
-  // Single Social Text
-  $text_controls[]  = array( 'setting' => 'shoestrap_single_social_text',	'label' => 'Single Social Text',   		  'section' => 'shoestrap_social',      'priority' => 10 );
   // Footer Text
   $text_controls[]  = array( 'setting' => 'shoestrap_footer_text',			'label' => 'Footer Alternative Text',     'section' => 'shoestrap_footer',      'priority' => 2 );
   
